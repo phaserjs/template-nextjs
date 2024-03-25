@@ -1,6 +1,9 @@
+/* If you want to use Tailwind CSS, you can uncomment the following lines */
+/*
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*/
 
 body {
     margin: 0;
