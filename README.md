@@ -38,6 +38,7 @@ We have provided a default project structure to get you started. This is as foll
 
 - `src/app/layout.tsx` - A basic Next.js component entry point. It is used to define the `<html>` and `<body>` tags and other globally shared UI.
 - `src` - Contains the Next.js client source code.
+- `src/app/icon.png` - The default favicon for the project.
 - `src/app/globals.css` - Some simple global CSS rules to help with page layout. You can enable Tailwind CSS here.
 - `src/app/page.tsx` - The main Next.js component.
 - `src/app/App.tsx` - Midleware component used to run Phaser in client mode.
