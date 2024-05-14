@@ -1,6 +1,6 @@
 {
     "name": "template-nextjs",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "A Phaser 3 Next.js project template that demonstrates Next.js with React communication and uses Vite for bundling.",
     "repository": {
         "type": "git",
@@ -26,7 +26,7 @@
         "build": "next build"
     },
     "dependencies": {
-        "next": "14.1.4",
+        "next": "14.2.3",
         "phaser": "^3.80.1",
         "react": "^18",
         "react-dom": "^18"
@@ -35,12 +35,6 @@
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
-        "autoprefixer": "^10.0.1",
-        "eslint": "^8",
-        "eslint-config-next": "14.1.4",
-        "postcss": "^8",
-        "postcss-nesting": "^12.1.0",
-        "tailwindcss": "^3.3.0",
         "typescript": "^5"
     }
 }

@@ -7,7 +7,7 @@ This is a Phaser 3 project template that uses the Next.js framework. It includes
 This template has been updated for:
 
 - [Phaser 3.80.1](https://github.com/phaserjs/phaser)
-- [Next.js 14.1.4](https://github.com/vercel/next.js)
+- [Next.js 14.2.3](https://github.com/vercel/next.js)
 - [TypeScript 5](https://github.com/microsoft/TypeScript)
 
 ![screenshot](screenshot.png)
@@ -36,17 +36,17 @@ Once the server is running you can edit any of the files in the `src` folder. Ne
 
 We have provided a default project structure to get you started. This is as follows:
 
-- `src/app/layout.tsx` - A basic Next.js component entry point. It is used to define the `<html>` and `<body>` tags and other globally shared UI.
+- `src/pages/_document.tsx` - A basic Next.js component entry point. It is used to define the `<html>` and `<body>` tags and other globally shared UI.
 - `src` - Contains the Next.js client source code.
-- `src/app/icon.png` - The default favicon for the project.
-- `src/app/globals.css` - Some simple global CSS rules to help with page layout. You can enable Tailwind CSS here.
-- `src/app/page.tsx` - The main Next.js component.
-- `src/app/App.tsx` - Midleware component used to run Phaser in client mode.
+- `src/styles/globals.css` - Some simple global CSS rules to help with page layout. You can enable Tailwind CSS here.
+- `src/page/_app.tsx` - The main Next.js component.
+- `src/App.tsx` - Midleware component used to run Phaser in client mode.
 - `src/game/PhaserGame.tsx` - The React component that initializes the Phaser Game and serve like a bridge between React and Phaser.
 - `src/game/EventBus.ts` - A simple event bus to communicate between React and Phaser.
 - `src/game` - Contains the game source code.
 - `src/game/main.tsx` - The main **game** entry point. This contains the game configuration and start the game.
 - `src/game/scenes/` - The Phaser Scenes are in this folder.
+- `public/favicon.png` - The default favicon for the project.
 - `public/assets` - Contains the static assets used by the game.
 ## React Bridge
 
