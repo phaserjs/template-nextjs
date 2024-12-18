@@ -5,7 +5,7 @@ import { MainMenu } from './game/scenes/MainMenu';
 function App()
 {
     // The sprite can only be moved in the MainMenu Scene
-    const [canMoveSprite, setCanMoveSprite] = useState(true);
+    const [canMoveSprite, setCanMoveSprite] = useState(false);
 
     //  References to the PhaserGame component (game and scene are exposed)
     const phaserRef = useRef<IRefPhaserGame | null>(null);
@@ -73,22 +73,15 @@ function App()
         }
     }
 
-    // Event emitted from the PhaserGame component
-    const onActiveSceneChange = (scene: Phaser.Scene) => {
-
-        setCanMoveSprite(scene.scene.key !== 'MainMenu');
-        
-    }
-
     return (
         <div id="app">
-            <PhaserGame ref={phaserRef} onActiveSceneChange={onActiveSceneChange} />
+            <PhaserGame ref={phaserRef} setCanMoveSprite={setCanMoveSprite} />
             <div>
                 <div>
                     <button className="button" onClick={changeScene}>Change Scene</button>
                 </div>
                 <div>
-                    <button disabled={canMoveSprite} className="button" onClick={moveSprite}>Toggle Movement</button>
+                    <button disabled={!canMoveSprite} className="button" onClick={moveSprite}>Toggle Movement</button>
                 </div>
                 <div className="spritePosition">Sprite Position:
                     <pre>{`{\n  x: ${spritePosition.x}\n  y: ${spritePosition.y}\n}`}</pre>
