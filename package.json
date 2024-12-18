@@ -28,7 +28,7 @@
         "build-nolog": "next build"
     },
     "dependencies": {
-        "next": "14.2.3",
+        "next": "^14.2.20",
         "phaser": "^3.87.0",
         "react": "^18",
         "react-dom": "^18"
