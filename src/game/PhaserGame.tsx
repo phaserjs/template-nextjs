@@ -1,47 +1,38 @@
-import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
+import { Dispatch, RefObject, SetStateAction, useEffect, useLayoutEffect} from 'react';
 import StartGame from './main';
 import { EventBus } from './EventBus';
 
-export interface IRefPhaserGame
+interface IRefPhaserGame
 {
     game: Phaser.Game | null;
     scene: Phaser.Scene | null;
 }
 
-interface IProps
-{
-    currentActiveScene?: (scene_instance: Phaser.Scene) => void
+interface IPropsPhaserGame{
+    ref: RefObject<IRefPhaserGame | null>,
+    setCanMoveSprite:Dispatch<SetStateAction<boolean>>
 }
 
-export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame({ currentActiveScene }, ref)
+const PhaserGame = ({ref, setCanMoveSprite}: IPropsPhaserGame) =>
 {
-    const game = useRef<Phaser.Game | null>(null!);
-
     useLayoutEffect(() =>
     {
-        if (game.current === null)
+        if (ref.current === null)
         {
-
-            game.current = StartGame("game-container");
-
-            if (typeof ref === 'function')
-            {
-                ref({ game: game.current, scene: null });
-            } else if (ref)
-            {
-                ref.current = { game: game.current, scene: null };
-            }
-
+            const game = StartGame("game-container")
+            ref.current = { game: game, scene: null };
         }
 
         return () =>
         {
-            if (game.current)
+            if (ref.current?.game)
             {
-                game.current.destroy(true);
-                if (game.current !== null)
+                let game = ref.current.game
+                game.destroy(true);
+                if (ref.current.game !== null)
                 {
-                    game.current = null;
+                    ref.current.game = null
+                    ref.current = null
                 }
             }
         }
@@ -51,36 +42,22 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
     {
         EventBus.on('current-scene-ready', (scene_instance: Phaser.Scene) =>
         {
-            if (currentActiveScene && typeof currentActiveScene === 'function')
-            {
 
-                currentActiveScene(scene_instance);
-
-            }
-
-            if (typeof ref === 'function')
-            {
-
-                ref({ game: game.current, scene: scene_instance });
+            const prevRef = ref.current as IRefPhaserGame
             
-            } else if (ref)
-            {
-
-                ref.current = { game: game.current, scene: scene_instance };
-
-            }
+            ref.current = Object.assign(prevRef, {scene: scene_instance })
             
+            setCanMoveSprite((ref?.current?.scene?.scene.key === "MainMenu"))
+
         });
         return () =>
         {
-
             EventBus.removeListener('current-scene-ready');
         
         }
-    }, [currentActiveScene, ref]);
+    }, [ref]);
 
-    return (
-        <div id="game-container"></div>
-    );
+    return <div id="game-container"></div>
+}
 
-});
+export {PhaserGame as default, type IRefPhaserGame, type IPropsPhaserGame}
