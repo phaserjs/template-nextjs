@@ -116,15 +116,9 @@ const ReactComponent = () => {
 
     const phaserRef = useRef<IRefPhaserGame>(); // you can access to this ref from phaserRef.current
 
-    const onCurrentActiveScene = (scene: Phaser.Scene) => {
-    
-        // This is invoked
-
-    }
-
     return (
         ...
-        <PhaserGame ref={phaserRef} currentActiveScene={onCurrentActiveScene} />
+        <PhaserGame ref={phaserRef}/>
         ...
     );
 
@@ -135,7 +129,7 @@ In the code above, you can get a reference to the current Phaser Game instance a
 
 From this state reference, the game instance is available via `phaserRef.current.game` and the most recently active Scene via `phaserRef.current.scene`.
 
-The `onCurrentActiveScene` callback will also be invoked whenever the the Phaser Scene changes, as long as you emit the event via the EventBus, as outlined above.
+You can also attach state or other data handlers to respond to events in Phaser, see `PhaserGame.tsx` and `EventBus.ts`.
 
 ## Handling Assets
 
