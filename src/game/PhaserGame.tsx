@@ -1,7 +1,6 @@
-import { Dispatch, memo, RefObject, SetStateAction, useEffect, useLayoutEffect/*, useRef*/ , useState } from 'react';
+import { Dispatch, memo, RefObject, SetStateAction, useEffect, useLayoutEffect} from 'react';
 import StartGame from './main';
 import { EventBus } from './EventBus';
-import { useRenderCount } from "@/hooks"
 
 interface IRefPhaserGame
 {
@@ -14,11 +13,8 @@ interface IPropsPhaserGame{
     setCanMoveSprite:Dispatch<SetStateAction<boolean>>
 }
 
-const PhaserGame = /*memo(*/({ref, setCanMoveSprite}: IPropsPhaserGame) =>
+const PhaserGame = ({ref, setCanMoveSprite}: IPropsPhaserGame) =>
 {
-    const renderCount = useRenderCount();
-    // const [count, setCount] = useState(0);
-
     useLayoutEffect(() =>
     {
         if (ref.current === null)
@@ -40,48 +36,28 @@ const PhaserGame = /*memo(*/({ref, setCanMoveSprite}: IPropsPhaserGame) =>
                 }
             }
         }
-    }, [/*ref*/]);
+    }, [ref]);
 
     useEffect(() =>
     {
-        console.log("attach new on()")
         EventBus.on('current-scene-ready', (scene_instance: Phaser.Scene) =>
         {
 
-            console.log("EventBus.on('current-scene-ready', (scene_instance: Phaser.Scene) =>")
-
-            console.log({EventBus})
-
             const prevRef = ref.current as IRefPhaserGame
-
-            ref.current = Object.assign(prevRef, {scene: scene_instance })
-
-            console.log("setCanMoveSprite", (ref?.current?.scene?.scene.key === "MainMenu"))
-
-            setCanMoveSprite((ref?.current?.scene?.scene.key === "MainMenu"))
             
+            ref.current = Object.assign(prevRef, {scene: scene_instance })
+            
+            setCanMoveSprite((ref?.current?.scene?.scene.key === "MainMenu"))
+
         });
         return () =>
         {
-            console.log("EventBus.removeListener('current-scene-ready');")
-
             EventBus.removeListener('current-scene-ready');
         
         }
-    }, [/*ref*/]);
+    }, [ref]);
 
-    return (
-        <div style={{display:'flex', flexDirection:'column'}}>
-            {/* 
-            <button className="primary" onClick={() => setCount((c) => c + 1)}>
-                Increment
-            </button>
-            <p>Button Count: {count}</p> 
-            */}
-            <p>PhaserGame Render Count: {renderCount}</p>
-            <div id="game-container"></div>
-        </div>
-    )
-}/*)*/;
+    return <div id="game-container"></div>
+}
 
 export {PhaserGame as default, type IRefPhaserGame, type IPropsPhaserGame}
