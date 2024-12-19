@@ -1,6 +1,7 @@
-import { Dispatch, RefObject, SetStateAction, useEffect, useLayoutEffect, useRef } from 'react';
+import { Dispatch, memo, RefObject, SetStateAction, useEffect, useLayoutEffect/*, useRef*/ , useState } from 'react';
 import StartGame from './main';
 import { EventBus } from './EventBus';
+import { useRenderCount } from "@/hooks"
 
 interface IRefPhaserGame
 {
@@ -10,16 +11,20 @@ interface IRefPhaserGame
 
 interface IPropsPhaserGame{
     ref: RefObject<IRefPhaserGame | null>,
-     setCanMoveSprite:Dispatch<SetStateAction<boolean>>
+    setCanMoveSprite:Dispatch<SetStateAction<boolean>>
 }
 
-const PhaserGame = ({ref, setCanMoveSprite}: IPropsPhaserGame) =>
+const PhaserGame = /*memo(*/({ref, setCanMoveSprite}: IPropsPhaserGame) =>
 {
+    const renderCount = useRenderCount();
+    // const [count, setCount] = useState(0);
+
     useLayoutEffect(() =>
     {
         if (ref.current === null)
         {
-            ref.current = { game: StartGame("game-container"), scene: null };
+            const game = StartGame("game-container")
+            ref.current = { game: game, scene: null };
         }
 
         return () =>
@@ -51,6 +56,8 @@ const PhaserGame = ({ref, setCanMoveSprite}: IPropsPhaserGame) =>
 
             ref.current = Object.assign(prevRef, {scene: scene_instance })
 
+            console.log("setCanMoveSprite", (ref?.current?.scene?.scene.key === "MainMenu"))
+
             setCanMoveSprite((ref?.current?.scene?.scene.key === "MainMenu"))
             
         });
@@ -64,9 +71,17 @@ const PhaserGame = ({ref, setCanMoveSprite}: IPropsPhaserGame) =>
     }, [/*ref*/]);
 
     return (
-        <div id="game-container" className={ref?.current?.game ? 'opacity-1' : 'opacity-0'}></div>
-    );
-
-};
+        <div style={{display:'flex', flexDirection:'column'}}>
+            {/* 
+            <button className="primary" onClick={() => setCount((c) => c + 1)}>
+                Increment
+            </button>
+            <p>Button Count: {count}</p> 
+            */}
+            <p>PhaserGame Render Count: {renderCount}</p>
+            <div id="game-container"></div>
+        </div>
+    )
+}/*)*/;
 
 export {PhaserGame as default, type IRefPhaserGame, type IPropsPhaserGame}

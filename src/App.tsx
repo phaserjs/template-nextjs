@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 import { IPropsPhaserGame, IRefPhaserGame } from './game/PhaserGame';
 import { MainMenu } from './game/scenes/MainMenu';
 
+import { useRenderCount } from "@/hooks"
+
 const PhaserGame = dynamic<IPropsPhaserGame>(() => import('./game/PhaserGame'), {
     ssr: false,
     // width/height copied from game config in main.ts
@@ -11,10 +13,13 @@ const PhaserGame = dynamic<IPropsPhaserGame>(() => import('./game/PhaserGame'), 
 
 function App()
 {
+
+    const renderCount = useRenderCount();
+
     // The sprite can only be moved in the MainMenu Scene
     const [canMoveSprite, setCanMoveSprite] = useState(false);
 
-    //  References to the PhaserGame component (game and scene are exposed)
+    // References to the PhaserGame component (game and scene are exposed)
     const phaserRef = useRef<IRefPhaserGame | null>(null);
     const [spritePosition, setSpritePosition] = useState({ x: 0, y: 0 });
 
@@ -79,11 +84,12 @@ function App()
             }
         }
     }
-
+    
     return (
         <div id="app">
             <PhaserGame ref={phaserRef} setCanMoveSprite={setCanMoveSprite} />
             <div>
+                <p>Parent App Container Render Count: {renderCount}</p>
                 <div>
                     <button className="button" onClick={changeScene}>Change Scene</button>
                 </div>
