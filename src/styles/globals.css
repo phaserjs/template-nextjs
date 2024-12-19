@@ -15,6 +15,18 @@ body {
     align-items: center;
 }
 
+#game-container {
+   transition: opacity 1s;
+}
+
+.opacity-0 {
+    opacity:0;
+}
+
+.opacity-1{
+    opacity: 1;
+}
+
 .spritePosition {
     margin: 10px 0 0 10px;
     font-size: 0.8em;

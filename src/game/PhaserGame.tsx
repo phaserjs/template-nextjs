@@ -2,13 +2,18 @@ import { Dispatch, RefObject, SetStateAction, useEffect, useLayoutEffect, useRef
 import StartGame from './main';
 import { EventBus } from './EventBus';
 
-export interface IRefPhaserGame
+interface IRefPhaserGame
 {
     game: Phaser.Game | null;
     scene: Phaser.Scene | null;
 }
 
-export const PhaserGame = ({ref, setCanMoveSprite}: {ref: RefObject<IRefPhaserGame | null>, setCanMoveSprite:Dispatch<SetStateAction<boolean>>}) =>
+interface IPropsPhaserGame{
+    ref: RefObject<IRefPhaserGame | null>,
+     setCanMoveSprite:Dispatch<SetStateAction<boolean>>
+}
+
+const PhaserGame = ({ref, setCanMoveSprite}: IPropsPhaserGame) =>
 {
     useLayoutEffect(() =>
     {
@@ -59,7 +64,9 @@ export const PhaserGame = ({ref, setCanMoveSprite}: {ref: RefObject<IRefPhaserGa
     }, [/*ref*/]);
 
     return (
-        <div id="game-container"></div>
+        <div id="game-container" className={ref?.current?.game ? 'opacity-1' : 'opacity-0'}></div>
     );
 
 };
+
+export {PhaserGame as default, type IRefPhaserGame, type IPropsPhaserGame}

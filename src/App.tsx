@@ -1,6 +1,13 @@
+import dynamic from 'next/dynamic';
 import { useRef, useState } from 'react';
-import { IRefPhaserGame, PhaserGame } from './game/PhaserGame';
+import { IPropsPhaserGame, IRefPhaserGame } from './game/PhaserGame';
 import { MainMenu } from './game/scenes/MainMenu';
+
+const PhaserGame = dynamic<IPropsPhaserGame>(() => import('./game/PhaserGame'), {
+    ssr: false,
+    // width/height copied from game config in main.ts
+    loading: () => <div style={{width:1024,height: 768}}></div>
+  });
 
 function App()
 {
