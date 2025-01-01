@@ -7,7 +7,7 @@ This is a Phaser 3 project template that uses the Next.js framework. It includes
 This template has been updated for:
 
 - [Phaser 3.87.0](https://github.com/phaserjs/phaser)
-- [Next.js 14.2.3](https://github.com/vercel/next.js)
+- [Next.js 15.1.1](https://github.com/vercel/next.js)
 - [TypeScript 5](https://github.com/microsoft/TypeScript)
 
 ![screenshot](screenshot.png)
@@ -38,18 +38,20 @@ Once the server is running you can edit any of the files in the `src` folder. Ne
 
 We have provided a default project structure to get you started. This is as follows:
 
-- `src/pages/_document.tsx` - A basic Next.js component entry point. It is used to define the `<html>` and `<body>` tags and other globally shared UI.
-- `src` - Contains the Next.js client source code.
-- `src/styles/globals.css` - Some simple global CSS rules to help with page layout. You can enable Tailwind CSS here.
-- `src/page/_app.tsx` - The main Next.js component.
-- `src/App.tsx` - Midleware component used to run Phaser in client mode.
-- `src/game/PhaserGame.tsx` - The React component that initializes the Phaser Game and serve like a bridge between React and Phaser.
-- `src/game/EventBus.ts` - A simple event bus to communicate between React and Phaser.
+- `src/app` - Contains the Next.js source code, pages.
+- `src/app/layout.tsx` - A basic Next.js layout that applies to all pages. It is used to define the `<html>` and `<body>` tags and other globally shared UI.
+- `src/app/page.tsx` - Next.js router entry point.
+- `src/app/home-page.tsx` - Page component that wraps App.tsx.
+- `src/App.tsx` - Top level React component entry point. Wraps DOM UI and the PhaserGame component. State shared between React and Phaser can be set here.
+- `src/game/PhaserGame.tsx` - The React component that initializes the Phaser Game and serves like a bridge between React and Phaser. It is loaded client-side only.
 - `src/game` - Contains the game source code.
+- `src/game/EventBus.ts` - A simple event bus to communicate between React and Phaser.
 - `src/game/main.tsx` - The main **game** entry point. This contains the game configuration and start the game.
 - `src/game/scenes/` - The Phaser Scenes are in this folder.
+- `src/styles/globals.css` - Some simple global CSS rules to help with page layout. You can enable Tailwind CSS here.
 - `public/favicon.png` - The default favicon for the project.
 - `public/assets` - Contains the static assets used by the game.
+  
 ## React Bridge
 
 The `PhaserGame.tsx` component is the bridge between React and Phaser. It initializes the Phaser game and passes events between the two.
@@ -116,15 +118,9 @@ const ReactComponent = () => {
 
     const phaserRef = useRef<IRefPhaserGame>(); // you can access to this ref from phaserRef.current
 
-    const onCurrentActiveScene = (scene: Phaser.Scene) => {
-    
-        // This is invoked
-
-    }
-
     return (
         ...
-        <PhaserGame ref={phaserRef} currentActiveScene={onCurrentActiveScene} />
+        <PhaserGame ref={phaserRef}/>
         ...
     );
 
@@ -135,7 +131,7 @@ In the code above, you can get a reference to the current Phaser Game instance a
 
 From this state reference, the game instance is available via `phaserRef.current.game` and the most recently active Scene via `phaserRef.current.scene`.
 
-The `onCurrentActiveScene` callback will also be invoked whenever the the Phaser Scene changes, as long as you emit the event via the EventBus, as outlined above.
+You can also attach state or other data handlers to respond to events in Phaser, see `PhaserGame.tsx` and `EventBus.ts`.
 
 ## Handling Assets
 
