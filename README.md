@@ -43,7 +43,7 @@ We have provided a default project structure to get you started. This is as foll
 - `src/app/page.tsx` - Next.js router entry point.
 - `src/app/home-page.tsx` - Page component that wraps App.tsx.
 - `src/App.tsx` - Top level React component entry point. Wraps DOM UI and the PhaserGame component. State shared between React and Phaser can be set here.
-- `src/game/PhaserGame.tsx` - The React component that initializes the Phaser Game and serve like a bridge between React and Phaser. It is loaded client-side only.
+- `src/game/PhaserGame.tsx` - The React component that initializes the Phaser Game and serves like a bridge between React and Phaser. It is loaded client-side only.
 - `src/game` - Contains the game source code.
 - `src/game/EventBus.ts` - A simple event bus to communicate between React and Phaser.
 - `src/game/main.tsx` - The main **game** entry point. This contains the game configuration and start the game.
