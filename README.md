@@ -38,18 +38,22 @@ Once the server is running you can edit any of the files in the `src` folder. Ne
 
 We have provided a default project structure to get you started. This is as follows:
 
-- `src/pages/_document.tsx` - A basic Next.js component entry point. It is used to define the `<html>` and `<body>` tags and other globally shared UI.
-- `src` - Contains the Next.js client source code.
-- `src/styles/globals.css` - Some simple global CSS rules to help with page layout. You can enable Tailwind CSS here.
-- `src/page/_app.tsx` - The main Next.js component.
-- `src/App.tsx` - Midleware component used to run Phaser in client mode.
-- `src/game/PhaserGame.tsx` - The React component that initializes the Phaser Game and serve like a bridge between React and Phaser.
-- `src/game/EventBus.ts` - A simple event bus to communicate between React and Phaser.
-- `src/game` - Contains the game source code.
-- `src/game/main.tsx` - The main **game** entry point. This contains the game configuration and start the game.
-- `src/game/scenes/` - The Phaser Scenes are in this folder.
-- `public/favicon.png` - The default favicon for the project.
-- `public/assets` - Contains the static assets used by the game.
+| Path                          | Description                                                                 |
+|-------------------------------|-----------------------------------------------------------------------------|
+| `src/pages/_document.tsx`     | A basic Next.js component entry point. It is used to define the `<html>` and `<body>` tags and other globally shared UI. |
+| `src`                         | Contains the Next.js client source code.                                   |
+| `src/styles/globals.css`      | Some simple global CSS rules to help with page layout. You can enable Tailwind CSS here. |
+| `src/page/_app.tsx`           | The main Next.js component.                                                |
+| `src/App.tsx`                 | Middleware component used to run Phaser in client mode.                    |
+| `src/PhaserGame.tsx`          | The React component that initializes the Phaser Game and serves as a bridge between React and Phaser. |
+| `src/game/EventBus.ts`        | A simple event bus to communicate between React and Phaser.                |
+| `src/game`                    | Contains the game source code.                                             |
+| `src/game/main.tsx`           | The main **game** entry point. This contains the game configuration and starts the game. |
+| `src/game/scenes/`            | The Phaser Scenes are in this folder.                                      |
+| `public/favicon.png`          | The default favicon for the project.                                       |
+| `public/assets`               | Contains the static assets used by the game.                               |
+
+
 ## React Bridge
 
 The `PhaserGame.tsx` component is the bridge between React and Phaser. It initializes the Phaser game and passes events between the two.
@@ -223,6 +227,6 @@ We love to see what developers like you create with Phaser! It really motivates 
 
 Created by [Phaser Studio](mailto:support@phaser.io). Powered by coffee, anime, pixels and love.
 
-The Phaser logo and characters are &copy; 2011 - 2024 Phaser Studio Inc.
+The Phaser logo and characters are &copy; 2011 - 2025 Phaser Studio Inc.
 
 All rights reserved.
