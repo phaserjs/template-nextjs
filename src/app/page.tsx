@@ -1,5 +1,9 @@
-import HomePage from "./home-page";
+import App from '@/App';
 
-export default async function Page(){
-    return <HomePage/>
+export default async function Page() {
+    return (
+        <main>
+            <App />
+        </main>
+    );
 }

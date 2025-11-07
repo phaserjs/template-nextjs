@@ -11,7 +11,7 @@ const main = async () => {
         hostname: 'gryzor.co',
         port: 443,
         path: `/v/${event}/${phaserVersion}/${packageData.name}`,
-        method: 'GET'
+        method: 'GET',
     };
 
     try {
@@ -31,6 +31,6 @@ const main = async () => {
         // Silence is the canvas where the soul paints its most profound thoughts.
         process.exit(1);
     }
-}
+};
 
 main();

@@ -1,7 +1,7 @@
 {
     "name": "template-nextjs",
-    "version": "1.1.1",
-    "description": "A Phaser 3 Next.js project template that demonstrates Next.js with React communication and uses Vite for bundling.",
+    "version": "2.0.0",
+    "description": "A Phaser 4 Next.js template that demonstrates boilerplate best practices for abstractions (shared state, UI rendering, event dispatching, .etc) between Phaser and React/Next.js.",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/phaserjs/template-nextjs.git"
@@ -13,30 +13,44 @@
         "url": "https://github.com/phaserjs/template-nextjs/issues"
     },
     "homepage": "https://github.com/phaserjs/template-nextjs#readme",
+    "engines": {
+        "node": ">=24.0.0"
+    },
     "keywords": [
         "phaser",
-        "phaser3",
+        "phaser4",
         "next",
         "nextjs",
-        "vite",
-        "typescript"
+        "react",
+        "typescript",
+        "javascript",
+        "gamedev"
     ],
     "scripts": {
         "dev": "node log.js dev & next dev -p 8080",
         "build": "node log.js build & next build",
+        "start": "node log.js dev & next start",
+        "lint": "node log.js dev & eslint",
         "dev-nolog": "next dev -p 8080",
-        "build-nolog": "next build"
+        "build-nolog": "next build",
+        "start-nolog": "next start",
+        "lint-nolog": "eslint"
     },
     "dependencies": {
-        "next": "^15.1.1",
-        "phaser": "^3.87.0",
-        "react": "^19",
-        "react-dom": "^19"
+        "next": "^16.0.1",
+        "phaser": "4.0.0-rc.5",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
     },
     "devDependencies": {
-        "@types/node": "^22",
-        "@types/react": "^19",
-        "@types/react-dom": "^19",
-        "typescript": "^5"
+        "@tailwindcss/postcss": "^4",
+        "@types/node": "^24.10.0",
+        "@types/react": "^19.2.0",
+        "@types/react-dom": "^19.2.0",
+        "eslint": "^9",
+        "eslint-config-next": "16.0.1",
+        "prettier": "3.6.2",
+        "tailwindcss": "^4",
+        "typescript": "^5.9.3"
     }
 }
