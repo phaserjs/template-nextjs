@@ -1,12 +1,12 @@
 # Phaser Next.js Template
 
-This is a Phaser 3 project template that uses the Next.js framework. It includes a bridge for React to Phaser game communication, hot-reloading for quick development workflow and scripts to generate production-ready builds.
+This is a Phaser project template that uses the Next.js framework. It includes a bridge for React to Phaser game communication, hot-reloading for quick development workflow and scripts to generate production-ready builds.
 
 ### Versions
 
 This template has been updated for:
 
-- [Phaser 3.90.0](https://github.com/phaserjs/phaser)
+- [Phaser 4](https://github.com/phaserjs/phaser)
 - [Next.js 15.3.1](https://github.com/vercel/next.js)
 - [TypeScript 5](https://github.com/microsoft/TypeScript)
 
