@@ -22,10 +22,10 @@
     "typescript"
   ],
   "scripts": {
-    "dev": "node log.js dev & next dev -p 8080",
-    "build": "node log.js build & next build",
-    "dev-nolog": "next dev -p 8080",
-    "build-nolog": "next build"
+    "dev": "node log.js dev & ./node_modules/.bin/next dev -p 8080",
+    "build": "node log.js build & ./node_modules/.bin/next build",
+    "dev-nolog": "./node_modules/.bin/next dev -p 8080",
+    "build-nolog": "./node_modules/.bin/next build"
   },
   "dependencies": {
     "next": "15.3.1",

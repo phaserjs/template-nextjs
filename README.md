@@ -21,8 +21,8 @@ This template has been updated for:
 | Command | Description |
 |---------|-------------|
 | `npm install` | Install project dependencies |
-| `npm run dev` | Launch a development web server |
-| `npm run build` | Create a production build in the `dist` folder |
+| `npm run dev` | Launch a development web server (uses local `./node_modules/.bin/next`) |
+| `npm run build` | Create a production build in the `dist` folder (uses local `./node_modules/.bin/next`) |
 | `npm run dev-nolog` | Launch a development web server without sending anonymous data (see "About log.js" below) |
 | `npm run build-nolog` | Create a production build in the `dist` folder without sending anonymous data (see "About log.js" below) |
 
@@ -43,7 +43,7 @@ We have provided a default project structure to get you started. This is as foll
 | `src/pages/_document.tsx`     | A basic Next.js component entry point. It is used to define the `<html>` and `<body>` tags and other globally shared UI. |
 | `src`                         | Contains the Next.js client source code.                                   |
 | `src/styles/globals.css`      | Some simple global CSS rules to help with page layout. You can enable Tailwind CSS here. |
-| `src/page/_app.tsx`           | The main Next.js component.                                                |
+| `src/pages/_app.tsx`          | The main Next.js component.                                                |
 | `src/App.tsx`                 | Middleware component used to run Phaser in client mode.                    |
 | `src/PhaserGame.tsx`          | The React component that initializes the Phaser Game and serves as a bridge between React and Phaser. |
 | `src/game/EventBus.ts`        | A simple event bus to communicate between React and Phaser.                |
@@ -58,11 +58,11 @@ We have provided a default project structure to get you started. This is as foll
 
 The `PhaserGame.tsx` component is the bridge between React and Phaser. It initializes the Phaser game and passes events between the two.
 
-To communicate between React and Phaser, you can use the **EventBus.js** file. This is a simple event bus that allows you to emit and listen for events from both React and Phaser.
+To communicate between React and Phaser, you can use the **EventBus.ts** file. This is a simple event bus that allows you to emit and listen for events from both React and Phaser.
 
 ```js
 // In React
-import { EventBus } from './EventBus';
+import { EventBus } from './game/EventBus';
 
 // Emit an event
 EventBus.emit('event-name', data);
@@ -80,7 +80,7 @@ Once exposed, you can access them like any regular react reference.
 
 ## Phaser Scene Handling
 
-In Phaser, the Scene is the lifeblood of your game. It is where you sprites, game logic and all of the Phaser systems live. You can also have multiple scenes running at the same time. This template provides a way to obtain the current active scene from React.
+In Phaser, the Scene is the lifeblood of your game. It is where your sprites, game logic and all of the Phaser systems live. You can also have multiple scenes running at the same time. This template provides a way to obtain the current active scene from React.
 
 You can get the current Phaser Scene from the component event `"current-active-scene"`. In order to do this, you need to emit the event `"current-scene-ready"` from the Phaser Scene class. This event should be emitted when the scene is ready to be used. You can see this done in all of the Scenes in our template.
 
@@ -113,7 +113,7 @@ Here's an example of how to access Phaser data for use in a React Component:
 
 ```ts
 import { useRef } from 'react';
-import { IRefPhaserGame } from "./game/PhaserGame";
+import { IRefPhaserGame } from "./PhaserGame";
 
 // In a parent component
 const ReactComponent = () => {
@@ -139,7 +139,7 @@ In the code above, you can get a reference to the current Phaser Game instance a
 
 From this state reference, the game instance is available via `phaserRef.current.game` and the most recently active Scene via `phaserRef.current.scene`.
 
-The `onCurrentActiveScene` callback will also be invoked whenever the the Phaser Scene changes, as long as you emit the event via the EventBus, as outlined above.
+The `onCurrentActiveScene` callback will also be invoked whenever the Phaser Scene changes, as long as you emit the event via the EventBus, as outlined above.
 
 ## Handling Assets
 

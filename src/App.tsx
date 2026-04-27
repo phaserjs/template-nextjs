@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Math as PhaserMath } from 'phaser';
 import { IRefPhaserGame, PhaserGame } from './PhaserGame';
 import { MainMenu } from './game/scenes/MainMenu';
 
@@ -53,8 +54,8 @@ function App()
             if (scene)
             {
                 // Add more stars
-                const x = Phaser.Math.Between(64, scene.scale.width - 64);
-                const y = Phaser.Math.Between(64, scene.scale.height - 64);
+                const x = PhaserMath.Between(64, scene.scale.width - 64);
+                const y = PhaserMath.Between(64, scene.scale.height - 64);
     
                 //  `add.sprite` is a Phaser GameObjectFactory method and it returns a Sprite Game Object instance
                 const star = scene.add.sprite(x, y, 'star');
